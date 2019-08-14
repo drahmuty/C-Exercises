@@ -10,7 +10,7 @@ int main(void)
             putchar(b);
             
         if (b == ' ')
-            if (a != ' ')
+            if (a != ' ')               // This can be condnsed to one line, but I'm keeping with the pace of the book
             putchar(b);
         
         a = b; 

@@ -15,12 +15,14 @@ int main(void)
         {
             if (state == IN)
                 putchar('\n');
+            
             state = OUT;
         }
         else 
         {
             if (state == OUT)
                 state = IN;
+            
             putchar(c);
         }
     }

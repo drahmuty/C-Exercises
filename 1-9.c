@@ -9,7 +9,7 @@ int main(void)
         if (b != ' ')
             putchar(b);
             
-        if (b == ' ' && a != ' ')               // This can be condnsed to one line, but I'm keeping with the pace of the book
+        if (b == ' ' && a != ' ')
             putchar(b);
         
         a = b; 

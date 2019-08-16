@@ -5,19 +5,22 @@
 
 int main(void)
 {
-    int c, nl, nw, nc, state;
+    int c, state;
     
     state = OUT;
-    nl = nw = nc = 0;
     
     while ((c = getchar()) != 0)
     {
         if (c == ' ' || c == '\n' || c == '\t')
-            state = OUT;
-        else if (state == OUT)
         {
-            state = IN;
-            putchar('\n');
+            if (state == IN)
+                putchar('\n');
+            state = OUT;
+        }
+        else 
+        {
+            if (state == OUT)
+                state = IN;
             putchar(c);
         }
     }

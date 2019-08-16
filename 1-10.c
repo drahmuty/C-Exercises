@@ -6,17 +6,23 @@ int main(void)
     
     while ((c = getchar()) != '0')
     {
-        if (c == '\t' || c == '\b' || c == '\\')
-            putchar('\\');
         if (c == '\t')
-            putchar('t');
-        if (c == '\b')
-            putchar('b');
-        if (c == '\\')
+        {
             putchar('\\');
+            putchar('t');
+        }
+        if (c == '\b')
+        {
+            putchar('\\');
+            putchar('b');
+        }
+        if (c == '\\')
+        {
+            putchar('\\');
+            putchar('\\');
+        }
         else
             putchar(c);
     }
-
     return 0;
 }

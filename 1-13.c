@@ -22,7 +22,6 @@ int main(void)
                 // printf(" %d", len);      // Option to include number next to histogram bar
                 putchar('\n');
             }
-            
             state = OUT;
             len = 0;
         }

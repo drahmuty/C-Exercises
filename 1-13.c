@@ -3,6 +3,8 @@
 #define IN 1
 #define OUT 0
 
+int printl(int x);
+
 int main(void)
 {
     int c, len, state;
@@ -16,7 +18,8 @@ int main(void)
         {
             if (state == IN)
             {
-                printf("%d", len);
+                printl(len);
+                // printf(" %d", len);      // Option to include number next to histogram bar
                 putchar('\n');
             }
             
@@ -31,4 +34,11 @@ int main(void)
             ++len;
         }
     }
+}
+
+int printl(x)
+{
+    for (int i = 0; i < x; i++)
+        printf("|");
+    return 0;
 }

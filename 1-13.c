@@ -8,6 +8,7 @@ int main(void)
     int c, len, state;
     
     len = 0;
+    state = OUT;
     
     while ((c = getchar()) != 0)
     {

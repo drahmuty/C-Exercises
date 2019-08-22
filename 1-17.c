@@ -11,23 +11,22 @@ int main(void)
 {
     int i, j;
     int len;
+    char line[MAXLINE];
+    char item[MAXLINE];
     
-    int item[MAXLINE];
-    int items[MAXITEMS];
-    
-    for (i = 0; i < MAXITEMS; i++)
-        items[i] = item;
-    
-    while ((len = get_line(line, MAXLINE) > 0)) {
-        
+    while ((len = get_line(line, MAXLINE)) > 0) {
+        if (len > THRESHOLD) {
+            copy(item, line);
+            printf("%s\n", item);
+        }
     }
 }
 
-int get_line(char[s], int lim)
+int get_line(char s[], int lim)
 {
-    inc c, i;
+    int c, i;
     
-    for (i=0; i<lim-1 && (c=getchar())!='0' && c!='\n'); ++i)
+    for (i=0; i<lim-1 && (c=getchar())!='0' && c!='\n'; ++i)
         s[i] = c;
     if (c == '\n') {
         s[i] = c;

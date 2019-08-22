@@ -8,7 +8,6 @@ void copy(char to[], char from[]);
 
 int main(void)
 {
-    int i, j;
     int len;
     char line[MAXLINE];
     char item[MAXLINE];

@@ -1,8 +1,7 @@
 #include <stdio.h>
 
 #define MAXLINE 1000
-#define MAXITEMS 100
-#define THRESHOLD 10
+#define THRESHOLD 10    // Changed from 80 to 10 for easier testing
 
 int get_line(char line[], int maxline);
 void copy(char to[], char from[]);

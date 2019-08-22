@@ -15,8 +15,7 @@ int main(void)
     
     while ((len = get_line(line, MAXLINE)) > 0) {
         if (len > THRESHOLD) {
-            copy(item, line);
-            printf("%s\n", item);
+            printf("%s\n", line);
         }
     }
 }
@@ -33,13 +32,4 @@ int get_line(char s[], int lim)
     }
     s[i] = '\0';
     return i;
-}
-
-void copy(char to[], char from[])
-{
-    int i;
-    
-    i = 0;
-    while ((to[i] = from[i]) != '\0')
-        ++i;
 }

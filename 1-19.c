@@ -46,7 +46,6 @@ void reverse_line(char s[])
     }
     if (j >= 0)
         t[j] = '\n';
-    i = 0;
     while (t[i] != '\n') {
         s[i] = t[i];
         ++i;

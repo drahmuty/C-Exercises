@@ -1,47 +1,29 @@
-// Looked up the solution
-// Changed for loop to while loop
+// Write an alternate version of squeeze(s1,s2) that deletes each character in s1 that matches any character in the string s2.
 
 #include <stdio.h>
 
-#define YES 1
-#define NO 0
-
-int htoi(char s[]);
+void squeeze_mod(char s1[], char s2[]);
 
 int main(void)
-{
-    char c[3];
-    c[0] = 'f';
-    c[1] = 'e';
-    c[2] = '1';
-    // printf("Dec:\t%d\n", atoi(c));
-    printf("Hex:\t%d\n", htoi(c));
+{   
+    char a[] = "david";
+    char b[] = "dad";
+
+    squeeze_mod(a, b);
+    printf("%s\n", a);
 }
 
-int htoi(char s[])
+void squeeze_mod(char s1[], char s2[])
 {
-    int i, n, hexdigit, inhex;
+    int i, j, k;
     
     i = 0;
-    if (s[i] == '0') {
-        ++i;
-        if (s[i] == 'x' || s[i] == 'X')
-            ++i;
+    for (i = 0; s1[i] != '\0'; i++) {
+        for (j = 0; s2[j] != '\0'; j++) {
+            if (s1[i] == s2[j])
+                i++;
+            }
+        s1[k++] = s1[i];
     }
-    n = 0;
-    inhex = YES;
-    while (inhex == YES) {
-        if (s[i] >= '0' && s[i] <= '9')
-            hexdigit = s[i] -  '0';
-        else if (s[i] >= 'a' && s[i] <= 'f')
-            hexdigit = s[i] - 'a' + 10;
-        else if (s[i] >= 'A' && s[i] <= 'F')
-            hexdigit = s[i] - 'A' + 10;
-        else 
-            inhex = NO;
-        if (inhex == YES)
-            n = 16 * n + hexdigit;
-        ++i;
-    }
-    return n;
+    s1[k] = '\0';
 }

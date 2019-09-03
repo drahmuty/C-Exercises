@@ -1,21 +1,17 @@
 #include <stdio.h>
 
-int setbits(unsigned x, int p, int n, unsigned y);
+unsigned setbits(unsigned x, int p, int n, unsigned y);
 
 int main(void)
 {
-    
+    printf("%u\n", setbits(0, 7, 2, 65535));
 }
 
-int setbits(unsigned x, int p, int n, unsigned y)
+unsigned setbits(unsigned x, int p, int n, unsigned y)
 {    
     unsigned z;
-    
-    z = y >> n;
-    z = z << n;
-    z = ~z;
-    z = y & z;
-    z = z << (p - n);
-    
-    
+
+    y = (y & ~(~0 << n)) << (p - n);
+    z = ~(~(~0 << n) << (p - n));
+    return (x & z) | y;
 }

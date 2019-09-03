@@ -6,8 +6,8 @@ void squeeze_mod(char s1[], char s2[]);
 
 int main(void)
 {   
-    char a[] = "can you hear me";
-    char b[] = "no i can't";
+    char a[] = "david";
+    char b[] = "dad";
 
     squeeze_mod(a, b);
     printf("%s\n", a);

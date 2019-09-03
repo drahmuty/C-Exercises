@@ -2,29 +2,27 @@
 
 #include <stdio.h>
 
-void squeeze(char s[], int c);
 void squeeze_mod(char s1[], char s2[]);
 
 int main(void)
-{
-    // code goes here
-}
+{   
+    char a[] = "can you hear me";
+    char b[] = "no i can't";
 
-void squeeze(char s[], int c)
-{
-    int i, j;
-    
-    for (i = j = 0; s[i] != '\0'; i++)
-        if (s[i] != c)
-            s[j++] = s[i];
-    s[j] = '\0';
+    squeeze_mod(a, b);
+    printf("%s\n", a);
 }
 
 void squeeze_mod(char s1[], char s2[])
 {
-    int i;
+    int i, j, k;
     
-    for (i = 0; s2[i] != '\0'; i++) {
-        squeeze(s1[], s2[i]);
+    for (i = k = 0; s1[i] != '\0'; i++) {
+        for (j = 0; s2[j] != '\0'; j++) {
+            if (s1[i] == s2[j])
+                i++;
+            }
+        s1[k++] = s1[i];
     }
+    s1[k] = '\0';
 }

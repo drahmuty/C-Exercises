@@ -26,7 +26,7 @@ void escape_mod(char s[], char t[])
 {
     int i, j;
     
-    for (i = j = 0; s[i] != '\0'; i++) {
+    for (i = j = 0; s[i] != '\0'; i++)
         switch (s[i]) {
             case '\n':
                 t[j++] = '\\';
@@ -40,14 +40,14 @@ void escape_mod(char s[], char t[])
                 t[j++] = s[i];
                 break;
         }
-    }
+    t[j] = '\0';
 }
 
 void escape_mod_r(char s[], char t[])
 {
     int i, j;
     
-    for (i = j = 0; s[i] != '\0'; i++) {
+    for (i = j = 0; s[i] != '\0'; i++)
         switch (s[i]) {
             case '\\':
                 if (s[++i] == 't')
@@ -59,5 +59,5 @@ void escape_mod_r(char s[], char t[])
                 t[j++] = s[i];
                 break;
         }
-    }
+    t[j] = '\0';
 }

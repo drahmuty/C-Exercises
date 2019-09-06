@@ -11,10 +11,7 @@ void expand(char s1[], char s2[])
     for ( ; s1[i] != '\0'; i++) {
         if (s1[i] == '-') {
             first = s1[i-1], last = s1[i+1];
-            if (first < last &&
-                ((first >= 'a' && last <= 'z') ||
-                (first >= 'A' && last <= 'Z') ||
-                (first >= '0' && last <= '9')))
+            if (first < last)
                 for (k = first + 1; k < last; k++)
                     s2[j++] = k;
             else

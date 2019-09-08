@@ -18,7 +18,7 @@ void itoa(int n, char s[]);
 
 int main(void)
 {
-    int x = -727379968;
+    int x = -20398;
     char y[MAX];
 
     printf("int = %d\n", x);

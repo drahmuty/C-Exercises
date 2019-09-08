@@ -18,7 +18,7 @@ void itoa(int n, char s[]);
 
 int main(void)
 {
-    int x = -20398;
+    int x = 556;
     char y[MAX];
 
     printf("int = %d\n", x);
@@ -46,17 +46,13 @@ void itoa(int n, char s[])
     int i, negative, a;
 
     negative = (n < 0) ? 1 : 0;
-    
+    a = negative ? -1 : 1;
     i = 0;
     do {
-        a = (n < 0) ? -1 : 1;
         s[i++] = a*(n % 10) + '0';
     } while(a*(n /= 10) > 0);
-
     if (negative)
         s[i++] = '-';
-
     s[i] = '\0';
-
     reverse(s);
 }

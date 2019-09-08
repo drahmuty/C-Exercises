@@ -50,7 +50,7 @@ void itoa(int n, char s[])
     i = 0;
     do {
         s[i++] = a*(n % 10) + '0';
-    } while(a*(n /= 10) > 0);
+    } while((n /= 10) != 0);
     if (negative)
         s[i++] = '-';
     s[i] = '\0';

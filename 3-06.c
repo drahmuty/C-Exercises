@@ -13,17 +13,13 @@ int main(void)
 
     x = -15256;
     w = 20;
-    
     printf("i: %d\n", x);
-
     itoa(x, s, w);
-    
     printf("w: ");
     while (w-- > 0)
         printf("-");
     printf("\n");
     printf("s: %s\n", s);
-
     return 0;
 }
 

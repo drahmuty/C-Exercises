@@ -12,7 +12,7 @@ int main(void)
     char s[1000];
     
     b = 16;
-    for (n = 0; n < 1000; n++) {
+    for (n = 0; n < 20; n++) {
         itob(n, s, b);
         printf("int: %d  base: %d  new: %s\n", n, b, s);
     }
@@ -39,8 +39,7 @@ void itob(int n, char s[], int b)
     i = 0;
     do {
         m = abs(n % b);
-        m = (m > 9) ? (m + 7) : m;      // Skip ASCII symbols between integers and letters
-        s[i++] = m + '0';
+        s[i++] = (m < 10) ? (m + '0') : (m - 10 + 'A');
     } while ((n /= b) != 0);
     if (sign < 0)
         s[i++] = '-';

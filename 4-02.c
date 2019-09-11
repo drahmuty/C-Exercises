@@ -20,22 +20,23 @@ double atof_sn(char s[])
         power *= 10.0;
     }
     val = sign * val / power;
-    if (s[i] == 'e' || s[i] == 'E')
+    
+    if (s[i] == 'e' || s[i] == 'E') {
         i++;
-    else
-        return val;
-    esign = (s[i] == '-') ? 1 : 0;
-    if (esign)
-        i++;
-    for (eval = 0.0; isdigit(s[i]); i++)
-        eval = 10.0 * eval + (s[i] - '0');
-    epower = 1.0;
-    while (eval-- > 0)
-        epower *= 10.0;
-    if (esign)
-        return val / epower;
-    else
-        return val * epower;
+        esign = (s[i] == '-') ? 1 : 0;
+        if (esign)
+            i++;
+        for (eval = 0.0; isdigit(s[i]); i++)
+            eval = 10.0 * eval + (s[i] - '0');
+        epower = 1.0;
+        while (eval-- > 0)
+            epower *= 10.0;
+        if (esign)
+            val /= epower;
+        else
+            val *= epower;
+    }
+    return val;
 }
 
 int main(void)

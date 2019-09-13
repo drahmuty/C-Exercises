@@ -43,12 +43,16 @@ int main(void)
                 op2 = pop();
                 if (op2 != 0.0)
                     push(pop() / op2);
+                else
+                    printf("error: zero division\n");
                 break;
             case '%':
                 mod2 = pop();
                 mod1 = pop();
                 if (mod2 != 0.0)
                     push(mod1 % mod2);
+                else
+                    printf("error: zero division\n");
                 break;
             case '\n':
                 printf("\t%.8g\n", pop());
@@ -81,22 +85,23 @@ double pop(void)
 
 int getop(char s[])
 {
-    int i, c, d;
+    int i, c;
     
     while ((s[0] = c = getch()) == ' ' || c == '\t')
         ;
     s[1] = '\0';
+    i = 0;
     if (!isdigit(c) && c != '.' && c != '-')
         return c;
     if (c == '-') {
-        if (!isdigit(d = getch())) {
-            ungetch(d);
-            return c;
+        if (isdigit(c = getch()) || c == '.')
+            s[++i] = c;
+        else {
+            if (c != EOF)
+                ungetch(c);
+            return '-';
         }
-        else
-            ungetch(d);
     }
-    i = 0;
     if (isdigit(c) || c == '-')
         while (isdigit(s[++i] = c = getch()))
             ;

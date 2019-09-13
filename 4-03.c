@@ -5,7 +5,7 @@
 #define MAXOP       100
 #define NUMBER      '0'
 #define MAXVAL      100
-#define BUFSIZE    100
+#define BUFSIZE     100
 
 int getop(char []);
 void push(double);
@@ -20,11 +20,11 @@ int bufp = 0;
 
 int main(void)
 {
-    int type;
+    int type, mod1, mod2;
     double op2;
     char s[MAXOP];
     
-    while ((type =getop(s)) != EOF) {
+    while ((type = getop(s)) != EOF) {
         switch(type) {
             case NUMBER:
                 push(atof(s));
@@ -43,6 +43,12 @@ int main(void)
                 op2 = pop();
                 if (op2 != 0.0)
                     push(pop() / op2);
+                break;
+            case '%':
+                mod2 = pop();
+                mod1 = pop();
+                if (mod2 != 0.0)
+                    push(mod1 % mod2);
                 break;
             case '\n':
                 printf("\t%.8g\n", pop());
@@ -75,15 +81,23 @@ double pop(void)
 
 int getop(char s[])
 {
-    int i, c;
+    int i, c, d;
     
     while ((s[0] = c = getch()) == ' ' || c == '\t')
         ;
     s[1] = '\0';
-    if (!isdigit(c) && c != '.')
+    if (!isdigit(c) && c != '.' && c != '-')
         return c;
+    if (c == '-') {
+        if (!isdigit(d = getch())) {
+            ungetch(d);
+            return c;
+        }
+        else
+            ungetch(d);
+    }
     i = 0;
-    if (isdigit(c))
+    if (isdigit(c) || c == '-')
         while (isdigit(s[++i] = c = getch()))
             ;
     if (c == '.')

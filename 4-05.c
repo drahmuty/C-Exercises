@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <math.h>
 
-#define MAXOP   100
-#define NUMBER  '0'
-#define MAXVAL  100
+#define MAXOP       100
+#define NUMBER      '0'
+#define MAXVAL      100
 #define BUFSIZE     100
+#define NAME        'n'
 
 int getop(char[]);
 void push(double);
@@ -16,6 +18,7 @@ void print_top(void);
 void dup(void);
 void swap(void);
 void clear_stack(void);
+void math_func(char s[]);
 
 int sp = 0;
 double val[MAXVAL];
@@ -32,6 +35,9 @@ int main(void)
         switch(type) {
             case NUMBER:
                 push(atof(s));
+                break;
+            case NAME:
+                math_func(s);
                 break;
             case '+':
                 push(pop() + pop());
@@ -79,6 +85,25 @@ int main(void)
         }
     }
     return 0;
+}
+
+// Return math function. I looked up this solution.
+void math_func(char s[])
+{
+    double op2;
+    
+    if (strcmp(s, "sin") == 0)
+        push(sin(pop()));
+    if (strcmp(s, "cos") == 0)
+        push(cos(pop()));
+    if (strcmp(s, "exp") == 0)
+        push(exp(pop()));
+    if (strcmp(s, "pow") == 0) {
+        op2 = pop();
+        push(pow(pop(), op2));
+    }
+    else
+        printf("error: %s not supported", s);
 }
 
 // Add an element to the top of the stack.
@@ -156,6 +181,11 @@ int getop(char s[])
         ;
     s[1] = '\0';
     i = 0;
+    if (c == 'n' && (c = getch()) == ' ') {
+        while ((s[i++] = c = getch()) != ' ' && c != '\t')
+            ;
+        return 'NAME';
+    }
     if (!isdigit(c) && c != '.' && c != '-')
         return c;
     if (c == '-') {

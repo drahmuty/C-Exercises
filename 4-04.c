@@ -12,6 +12,10 @@ void push(double);
 double pop(void);
 int getch(void);
 void ungetch(int);
+void print_top(void);
+void dup(void);
+void swap(void);
+void clear_stack(void);
 
 int sp = 0;
 double val[MAXVAL];
@@ -56,6 +60,18 @@ int main(void)
                 break;
             case '\n':
                 printf("\t%.8g\n", pop());
+                break;
+            case 't':
+                print_top();
+                break;
+            case 'd':
+                dup();
+                break;
+            case 's':
+                swap();
+                break;
+            case 'c':
+                clear_stack();
                 break;
             default:
                 printf("error: unknown command %s\n", s);
@@ -113,12 +129,13 @@ void dup(void)
 // Swap the top two elements of the stack.
 void swap(void)
 {
-    double temp;
+    double temp1, temp2;
     
     if (sp > 1) {
-        temp = val[--sp];
-        val[sp] = val[--sp];
-        val[sp++] = temp;
+        temp1 = val[--sp];
+        temp2 = val[--sp];
+        val[sp++] = temp1;
+        val[sp++] = temp2;
     }
     else
         printf("error: not enough elements to swap\n");

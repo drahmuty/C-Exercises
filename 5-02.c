@@ -6,7 +6,7 @@
 
 int getch(void);
 void ungetch(int);
-double getfloat(double *);
+int getfloat(double *);
 
 char buf[BUFSIZE];
 int bufp = 0;
@@ -26,7 +26,7 @@ int main(void)
     return 0;
 }
 
-double getfloat(double *pn)
+int getfloat(double *pn)
 {
     double val, power;
     int c, sign;

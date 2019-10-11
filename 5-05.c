@@ -48,8 +48,8 @@ char *strncat_custom(char *s, char *ct, int n)
 
 int strncmp_custom(char *cs, char *ct, int n)
 {
-    for ( ; n-- > 0 && *cs == *ct; cs++, ct++)
-        if (*cs == '\0' || n <= 0)
+    for ( ; *cs == *ct; cs++, ct++)
+        if (*cs == '\0' || --n <= 0)
             return 0;
     return *cs - *ct;
 }

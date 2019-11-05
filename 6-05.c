@@ -29,14 +29,21 @@ int main(void)
     return 0;
 }
 
-void undef(char *name)
+void undef(char *s)
 {
-    struct nlist *np;
+    struct nlist *np, *xp;
+    unsigned hashval;
     
-    if ((np = lookup(name)) != NULL) {
-        free((void *) np->name);
-        free((void *) np->defn);
+    hashval = hash(s);
+    for (xp = np = hashtab[hashval]; np != NULL; xp = np, np = np->next) {
+        if (strcmp(s, np->name) == 0) {
+            xp = np->next;
+            hashtab[hashval] = xp;
+            np = NULL;
+            return;
+        }
     }
+    return;
 }
 
 unsigned hash(char *s)
